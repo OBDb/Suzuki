@@ -174,9 +174,9 @@
   ]},
 { "hdr": "700", "rax": "708", "dbg": true, "cmd": {"22": "10AA"}, "freq": 1,
   "signals": [
-    {"id": "SUZUKI_MISFIRE_LOAD",   "path": "Engine", "fmt": {           "len": 8, "max": 510,               "mul": 510,  "div": 255,              "unit": "percent" }, "name": "Misfire load"},
-    {"id": "SUZUKI_MISFIRE_RPM",    "path": "Engine", "fmt": {"bix": 24, "len": 8, "max": 6375,              "mul": 6375, "div": 255,              "unit": "rpm"     }, "name": "Misfire RPM"},
-    {"id": "SUZUKI_MISFIRE_MARGIN", "path": "Engine", "fmt": {"bix": 32, "len": 8, "max": 127,  "min": -128,                          "add": -128, "unit": "rpm"     }, "name": "Misfire margin"}
+    {"id": "SUZUKI_MISFIRE_LOAD",      "path": "Engine", "fmt": {           "len": 8, "max": 510,               "mul": 510,  "div": 255,              "unit": "percent" }, "name": "Misfire load"},
+    {"id": "SUZUKI_MISFIRE_RPM",       "path": "Engine", "fmt": {"bix": 24, "len": 8, "max": 6375,              "mul": 6375, "div": 255,              "unit": "rpm"     }, "name": "Misfire RPM"},
+    {"id": "SUZUKI_MISFIRE_MARGIN_V2", "path": "Engine", "fmt": {"bix": 32, "len": 8, "max": 127,  "min": -128,                          "add": -128, "unit": "rpm"     }, "name": "Misfire margin"}
   ]},
 { "hdr": "700", "rax": "708", "dbg": true, "cmd": {"22": "10CD"}, "freq": 1,
   "signals": [
@@ -491,7 +491,7 @@
   ]},
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "61B1"}, "freq": 1,
   "signals": [
-    {"id": "SUZUKI_IA_FUEL_LEVEL", "path": "Fuel", "fmt": { "len": 8, "max": 55, "unit": "liters" }, "name": "Fuel level"}
+    {"id": "SUZUKI_IA_FUEL_LEVEL", "path": "Fuel", "fmt": { "len": 8, "max": 100, "unit": "percent" }, "name": "Fuel level"}
   ]},
 { "hdr": "720", "rax": "728", "dbg": true, "cmd": {"22": "DD01"}, "freq": 30,
   "signals": [
@@ -965,7 +965,7 @@
   ]},
 { "hdr": "760", "rax": "768", "dbg": true, "cmd": {"22": "DD01"}, "freq": 5,
   "signals": [
-    {"id": "SUZUKI_IA_ODO_BCM", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "unit": "kilometers" }, "name": "Odometer, stability control module"}
+    {"id": "SUZUKI_IA_ODO_BCM", "path": "Trips", "fmt": { "len": 24, "max": 16777215, "nullmax": 16777215, "unit": "kilometers" }, "name": "Odometer, stability control module"}
   ]},
 { "hdr": "780", "rax": "788", "dbg": true, "cmd": {"21": "04"}, "freq": 1,
   "signals": [
@@ -1269,6 +1269,7 @@
   "signals": [
     {"id": "SUZUKI_VSS",               "path": "Movement", "fmt": { "len": 8, "max": 323.85, "mul": 1.35,              "unit": "kilometersPerHour" }, "name": "Vehicle speed",      "suggestedMetric": "speed", "description": "Current vehicle speed."},
     {"id": "SUZUKI_VEHICLE_SPEED_7B0", "path": "Movement", "fmt": { "len": 8, "max": 326.4,  "mul": 326.4, "div": 255, "unit": "kilometersPerHour" }, "name": "Vehicle speed, 7B0", "suggestedMetric": "speed"},
+    {"id": "SUZUKI_VSS_7B0",           "path": "Movement", "fmt": { "len": 8, "max": 323.85, "mul": 1.35,              "unit": "kilometersPerHour" }, "name": "Vehicle speed, ABS"},
     {"id": "SUZUKI_VSS_V3",            "path": "Movement", "fmt": { "len": 8, "max": 326,    "mul": 1.28,              "unit": "kilometersPerHour" }, "name": "Vehicle speed",      "suggestedMetric": "speed", "description": "Current vehicle speed."}
   ]},
 { "hdr": "7B0", "rax": "7B8", "dbg": true, "cmd": {"21": "3C"}, "freq": 1,
@@ -1460,8 +1461,8 @@
   ]},
 { "hdr": "7C0", "rax": "7C8", "dbg": true, "cmd": {"21": "23"}, "freq": 5,
   "signals": [
-    {"id": "SUZUKI_ECT_7C0",   "path": "Engine", "fmt": { "len": 8, "max": 127.5,             "div": 2, "unit": "celsius" }, "name": "Engine coolant temperature", "suggestedMetric": "engineCoolantTemperature"},
-    {"id": "SUZUKI_COOLANT_T", "path": "Engine", "fmt": { "len": 8, "max": 127.5, "mul": 0.5,           "unit": "celsius" }, "name": "Coolant temperature"}
+    {"id": "SUZUKI_ECT_7C0",   "path": "Engine", "fmt": { "len": 8, "max": 127.5, "div": 2, "unit": "celsius" }, "name": "Engine coolant temperature", "suggestedMetric": "engineCoolantTemperature"},
+    {"id": "SUZUKI_COOLANT_T", "path": "Engine", "fmt": { "len": 8, "max": 127.5, "div": 2, "unit": "celsius" }, "name": "Coolant temperature"}
   ]},
 { "hdr": "7C0", "rax": "7C8", "dbg": true, "cmd": {"21": "29"}, "freq": 5,
   "signals": [
@@ -2154,8 +2155,11 @@
     {"id": "SUZUKI_CYL3_MISFIRE_CNT",          "path": "Engine.Misfires", "fmt": {"bix": 40, "len": 8,  "max": 254,                                                    "nullmax": 254,   "unit": "scalar"  }, "name": "Cylinder #3 misfire count"},
     {"id": "SUZUKI_CYL4_MISFIRE_CNT",          "path": "Engine.Misfires", "fmt": {"bix": 48, "len": 8,  "max": 254,                                                    "nullmax": 254,   "unit": "scalar"  }, "name": "Cylinder #4 misfire count"},
     {"id": "SUZUKI_ALL_CYLINDERS_MISFIRE_CNT", "path": "Engine.Misfires", "fmt": {"bix": 56, "len": 8,  "max": 254,                                                    "nullmax": 254,   "unit": "scalar"  }, "name": "All cylinders misfire count"},
+    {"id": "SUZUKI_CYL5_MISFIRE_CNT",          "path": "Engine.Misfires", "fmt": {"bix": 56, "len": 8,  "max": 255,                                                                      "unit": "scalar"  }, "name": "Cylinder #5 misfire count"},
     {"id": "SUZUKI_IGNITION_TRIG_CNT",         "path": "Control",         "fmt": {"bix": 64, "len": 16, "max": 65534,                                                  "nullmax": 65534, "unit": "scalar"  }, "name": "Ignition trigger count"},
-    {"id": "SUZUKI_MISFIRE_MARGIN_V2",         "path": "Engine.Misfires", "fmt": {"bix": 80, "len": 8,  "max": 127,   "min": -128,                        "add": -128,                   "unit": "percent" }, "name": "Misfire margin"}
+    {"id": "SUZUKI_CYL6_MISFIRE_CNT",          "path": "Engine.Misfires", "fmt": {"bix": 64, "len": 8,  "max": 255,                                                                      "unit": "scalar"  }, "name": "Cylinder #6 misfire count"},
+    {"id": "SUZUKI_MISFIRE_MARGIN_V2",         "path": "Engine.Misfires", "fmt": {"bix": 80, "len": 8,  "max": 127,   "min": -128,                        "add": -128,                   "unit": "percent" }, "name": "Misfire margin"},
+    {"id": "SUZUKI_MISFIRE_MARGIN",            "path": "Engine.Misfires", "fmt": {"bix": 96, "len": 8,  "max": 127,   "min": -128,                        "add": -128,                   "unit": "percent" }, "name": "Misfire margin"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "47"}, "freq": 1,
   "signals": [
