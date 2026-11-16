@@ -325,7 +325,7 @@
   ]},
 { "hdr": "700", "rax": "708", "dbg": true, "cmd": {"22": "1621"}, "freq": 1,
   "signals": [
-    {"id": "SUZUKI_GEAR_700", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Gear"}
+    {"id": "SUZUKI_GEAR_700", "path": "Transmission", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Gear", "suggestedMetric": "gear"}
   ]},
 { "hdr": "700", "rax": "708", "dbg": true, "cmd": {"22": "1622"}, "freq": 1,
   "signals": [
@@ -1057,7 +1057,7 @@
   ]},
 { "hdr": "7A2", "rax": "7AA", "dbg": true, "cmd": {"22": "10E3"}, "freq": 1,
   "signals": [
-    {"id": "SUZUKI_CRUISE_VSS_T", "path": "Cruise control", "fmt": { "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Cruise speed, set"}
+    {"id": "SUZUKI_CRUISE_VSS_T", "path": "Cruise control", "fmt": { "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Cruise speed, set", "suggestedMetric": "cruiseSetSpeed"}
   ]},
 { "hdr": "7A2", "rax": "7AA", "dbg": true, "cmd": {"22": "10E5"}, "freq": 30,
   "signals": [
@@ -1307,8 +1307,8 @@
   ]},
 { "hdr": "7B0", "rax": "7B8", "dbg": true, "cmd": {"21": "47"}, "freq": 0.25,
   "signals": [
-    {"id": "SUZUKI_LAT_G",          "path": "Orientation", "fmt": {           "len": 8,  "max": 2.5,    "min": -2.5,    "div": 50,                 "sign": true, "unit": "gravity" }, "name": "Lateral g"},
-    {"id": "SUZUKI_LNG_G",          "path": "Orientation", "fmt": {"bix": 8,  "len": 8,  "max": 2.5,    "min": -2.5,    "div": 50,                 "sign": true, "unit": "gravity" }, "name": "Longitudinal g"},
+    {"id": "SUZUKI_LAT_G",          "path": "Orientation", "fmt": {           "len": 8,  "max": 2.5,    "min": -2.5,    "div": 50,                 "sign": true, "unit": "gravity" }, "name": "Lateral g",                    "suggestedMetric": "lateralAcceleration"},
+    {"id": "SUZUKI_LNG_G",          "path": "Orientation", "fmt": {"bix": 8,  "len": 8,  "max": 2.5,    "min": -2.5,    "div": 50,                 "sign": true, "unit": "gravity" }, "name": "Longitudinal g",               "suggestedMetric": "longitudinalAcceleration"},
     {"id": "SUZUKI_YAW_RATE_V2",    "path": "Orientation", "fmt": {"bix": 16, "len": 8,  "max": 127,    "min": -128,               "add": -128,                  "unit": "degrees" }, "name": "Yaw rate value (degrees/sec)"},
     {"id": "SUZUKI_YAW",            "path": "Orientation", "fmt": {"bix": 16, "len": 8,  "max": 127,    "min": -128,               "add": -128,                  "unit": "scalar"  }, "name": "Yaw rate value"},
     {"id": "SUZUKI_STEER_ANGLE",    "path": "Control",     "fmt": {"bix": 24, "len": 16, "max": 3276,   "min": -3276,   "div": 10, "add": -3276.8,               "unit": "degrees" }, "name": "Steering wheel angle",         "description": "Positive = counter-clockwise, negative = clockwise."},
@@ -1449,10 +1449,11 @@
   ]},
 { "hdr": "7C0", "rax": "7C8", "dbg": true, "cmd": {"21": "12"}, "freq": 1,
   "signals": [
-    {"id": "SUZUKI_TAIL_CANCEL_LIGHT",       "path": "Lights", "fmt": {"bix": 2,  "len": 1, "max": 1, "unit": "offon" }, "name": "Tail cancel SW"},
-    {"id": "SUZUKI_P_SEATBELT_BUCKLE_LIGHT", "path": "Lights", "fmt": {"bix": 8,  "len": 1, "max": 1, "unit": "offon" }, "name": "P-seatbelt buckle SW"},
-    {"id": "SUZUKI_CHECK_ENGINE_LIGHT",      "path": "Lights", "fmt": {"bix": 15, "len": 1, "max": 1, "unit": "offon" }, "name": "Check engine SW"},
-    {"id": "SUZUKI_EOP_LIGHT",               "path": "Lights", "fmt": {"bix": 35, "len": 1, "max": 1, "unit": "offon" }, "name": "Oil pressure switch"}
+    {"id": "SUZUKI_TAIL_CANCEL_LIGHT",       "path": "Lights",  "fmt": {"bix": 2,  "len": 1, "max": 1, "unit": "offon" }, "name": "Tail cancel SW"},
+    {"id": "SUZUKI_P_SEATBELT_BUCKLE_LIGHT", "path": "Lights",  "fmt": {"bix": 8,  "len": 1, "max": 1, "unit": "offon" }, "name": "P-seatbelt buckle SW"},
+    {"id": "SUZUKI_CHECK_ENGINE_LIGHT",      "path": "Lights",  "fmt": {"bix": 15, "len": 1, "max": 1, "unit": "offon" }, "name": "Check engine SW"},
+    {"id": "SUZUKI_CHECK_ENGINE",            "path": "Control", "fmt": {"bix": 15, "len": 1, "max": 1, "unit": "offon" }, "name": "Check engine",         "suggestedMetric": "checkEngineLightOn"},
+    {"id": "SUZUKI_EOP_LIGHT",               "path": "Lights",  "fmt": {"bix": 35, "len": 1, "max": 1, "unit": "offon" }, "name": "Oil pressure switch"}
   ]},
 { "hdr": "7C0", "rax": "7C8", "dbg": true, "cmd": {"21": "13"}, "freq": 5,
   "signals": [
@@ -1616,7 +1617,7 @@
   ]},
 { "hdr": "7D2", "rax": "7DA", "fcm1": true, "dbg": true, "cmd": {"22": "1004"}, "freq": 5,
   "signals": [
-    {"id": "SUZUKI_DRIVE_MODE", "path": "Drivetrain", "name": "Drive mode", "fmt": {"len": 8, "map": {
+    {"id": "SUZUKI_DRIVE_MODE", "path": "Drivetrain", "name": "Drive mode", "suggestedMetric": "driveMode", "fmt": {"len": 8, "map": {
           "0":  { "description": "Normal",    "value": "NORMAL" },
           "1":  { "description": "Power",     "value": "POWER" },
           "2":  { "description": "Sport",     "value": "SPORT" },
@@ -1643,7 +1644,7 @@
   ]},
 { "hdr": "7D2", "rax": "7DA", "fcm1": true, "dbg": true, "cmd": {"22": "1061"}, "freq": 1,
   "signals": [
-    {"id": "SUZUKI_SHIFT", "path": "Transmission", "name": "Shift position", "fmt": {"len": 8, "map": {
+    {"id": "SUZUKI_SHIFT", "path": "Transmission", "name": "Shift position", "suggestedMetric": "gearSelector", "fmt": {"len": 8, "map": {
           "0": { "description": "Park",    "value": "P" },
           "2": { "description": "Reverse", "value": "R" },
           "4": { "description": "Neutral", "value": "N" },
@@ -1856,11 +1857,11 @@
     {"id": "SUZUKI_LTFT_B1",          "path": "Fuel",     "fmt": {"bix": 128, "len": 8,  "max": 255,   "unit": "percent"           }, "name": "Long term fuel trim, bank 1"},
     {"id": "SUZUKI_STFT_B2",          "path": "Fuel",     "fmt": {"bix": 136, "len": 8,  "max": 255,   "unit": "percent"           }, "name": "Short term fuel trim, bank 2",      "suggestedMetric": "shortTermFuelTrim"},
     {"id": "SUZUKI_LTFT_B2",          "path": "Fuel",     "fmt": {"bix": 144, "len": 8,  "max": 255,   "unit": "percent"           }, "name": "Long term fuel trim, bank 2"},
-    {"id": "SUZUKI_IMAP",             "path": "Engine",   "fmt": {"bix": 152, "len": 8,  "max": 255,   "unit": "kilopascal"        }, "name": "Intake manifold absolute pressure"},
+    {"id": "SUZUKI_IMAP",             "path": "Engine",   "fmt": {"bix": 152, "len": 8,  "max": 255,   "unit": "kilopascal"        }, "name": "Intake manifold absolute pressure", "suggestedMetric": "absoluteBoostPressure"},
     {"id": "SUZUKI_RPM_V2",           "path": "Movement", "fmt": {"bix": 160, "len": 16, "max": 65535, "unit": "rpm"               }, "name": "Engine RPM"},
     {"id": "SUZUKI_VEHICLE_SPEED",    "path": "Movement", "fmt": {"bix": 176, "len": 8,  "max": 255,   "unit": "kilometersPerHour" }, "name": "Vehicle speed",                     "suggestedMetric": "speed"},
     {"id": "SUZUKI_TIMING_ADVANCE",   "path": "Engine",   "fmt": {"bix": 184, "len": 8,  "max": 255,   "unit": "degrees"           }, "name": "Timing advance"},
-    {"id": "SUZUKI_INTAKE_AIR_T",     "path": "Engine",   "fmt": {"bix": 192, "len": 8,  "max": 255,   "unit": "celsius"           }, "name": "Intake air temperature"},
+    {"id": "SUZUKI_INTAKE_AIR_T",     "path": "Engine",   "fmt": {"bix": 192, "len": 8,  "max": 255,   "unit": "celsius"           }, "name": "Intake air temperature",            "suggestedMetric": "intakeAirTemperature"},
     {"id": "SUZUKI_MAF_V2",           "path": "Engine",   "fmt": {"bix": 200, "len": 8,  "max": 255,   "unit": "gramsPerSecond"    }, "name": "Mass air flow",                     "suggestedMetric": "massAirFlow"},
     {"id": "SUZUKI_THROTTLE",         "path": "Engine",   "fmt": {"bix": 216, "len": 8,  "max": 255,   "unit": "percent"           }, "name": "Throttle position"},
     {"id": "SUZUKI_OXYGEN_S1B1",      "path": "Engine",   "fmt": {"bix": 232, "len": 8,  "max": 255,   "unit": "volts"             }, "name": "Oxygen sensor 1 bank 1"},
@@ -1871,7 +1872,7 @@
     {"id": "SUZUKI_THROTTLE_V",       "path": "Battery",  "fmt": {"bix": 288, "len": 8,  "max": 255,   "unit": "volts"             }, "name": "Throttle position sensor voltage"},
     {"id": "SUZUKI_FIT_B1",           "path": "Fuel",     "fmt": {"bix": 296, "len": 16, "max": 65535, "unit": "milliseconds"      }, "name": "Fuel injection timing bank 1"},
     {"id": "SUZUKI_FIT_B2",           "path": "Fuel",     "fmt": {"bix": 312, "len": 16, "max": 65535, "unit": "milliseconds"      }, "name": "Fuel injection timing bank 2"},
-    {"id": "SUZUKI_BARO_V2",          "path": "Engine",   "fmt": {"bix": 328, "len": 8,  "max": 255,   "unit": "kilopascal"        }, "name": "Barometric pressure"},
+    {"id": "SUZUKI_BARO_V2",          "path": "Engine",   "fmt": {"bix": 328, "len": 8,  "max": 255,   "unit": "kilopascal"        }, "name": "Barometric pressure",               "suggestedMetric": "barometricPressure"},
     {"id": "SUZUKI_TFT",              "path": "Fuel",     "fmt": {"bix": 384, "len": 8,  "max": 255,   "unit": "percent"           }, "name": "Total fuel trim"},
     {"id": "SUZUKI_CONTROL_MODULE_V", "path": "Battery",  "fmt": {"bix": 392, "len": 8,  "max": 255,   "unit": "volts"             }, "name": "Control module voltage",            "suggestedMetric": "starterBatteryVoltage"},
     {"id": "SUZUKI_FLI",              "path": "Fuel",     "fmt": {"bix": 416, "len": 8,  "max": 255,   "unit": "percent"           }, "name": "Fuel level",                        "suggestedMetric": "fuelTankLevel"}
@@ -1879,21 +1880,22 @@
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "01"}, "freq": 1,
   "signals": [
     {"id": "SUZUKI_CALCULATED_LOAD_7E0",          "path": "Engine",   "fmt": {            "len": 8,  "max": 100,                  "mul": 100, "div": 255,               "unit": "percent"           }, "name": "Calculated load_7e0"},
-    {"id": "SUZUKI_N210_MIL",                     "path": "DTCs",     "fmt": {            "len": 1,  "max": 1,                                                          "unit": "offon"             }, "name": "MIL"},
+    {"id": "SUZUKI_N210_MIL",                     "path": "DTCs",     "fmt": {            "len": 1,  "max": 1,                                                          "unit": "offon"             }, "name": "MIL",                               "suggestedMetric": "checkEngineLightOn"},
     {"id": "SUZUKI_LOAD",                         "path": "Engine",   "fmt": {            "len": 8,  "max": 100,                  "mul": 100, "div": 255,               "unit": "percent"           }, "name": "Calculated load",                   "suggestedMetric": "engineLoad"},
     {"id": "SUZUKI_N210_DTC_COUNT",               "path": "DTCs",     "fmt": {"bix": 1,   "len": 7,  "max": 127,                                                        "unit": "scalar"            }, "name": "Number of emission DTCs"},
     {"id": "SUZUKI_VEHICLE_LOAD",                 "path": "Engine",   "fmt": {"bix": 8,   "len": 16, "max": 100,                  "mul": 100, "div": 65535,             "unit": "percent"           }, "name": "Vehicle load"},
     {"id": "SUZUKI_VEHICLE_LOAD_V2",              "path": "Engine",   "fmt": {"bix": 8,   "len": 16, "max": 25700,                "mul": 100, "div": 255,               "unit": "percent"           }, "name": "Vehicle load"},
     {"id": "SUZUKI_MAF_V2",                       "path": "Engine",   "fmt": {"bix": 24,  "len": 16, "max": 655.35,                                                     "unit": "gramsPerSecond"    }, "name": "Mass air flow",                     "suggestedMetric": "massAirFlow"},
     {"id": "SUZUKI_MAF",                          "path": "Engine",   "fmt": {"bix": 24,  "len": 16, "max": 655.35,                           "div": 100,               "unit": "gramsPerSecond"    }, "name": "Mass air flow",                     "suggestedMetric": "massAirFlow"},
-    {"id": "SUZUKI_MAP_7E0",                      "path": "Engine",   "fmt": {"bix": 32,  "len": 8,  "max": 255,                                                        "unit": "kilopascal"        }, "name": "Manifold absolute pressure"},
-    {"id": "SUZUKI_MAP",                          "path": "Engine",   "fmt": {"bix": 40,  "len": 8,  "max": 255,                                                        "unit": "kilopascal"        }, "name": "Manifold absolute pressure"},
-    {"id": "SUZUKI_IAT",                          "path": "Engine",   "fmt": {"bix": 40,  "len": 8,  "max": 215,      "min": -40,                           "add": -40, "unit": "celsius"           }, "name": "Intake air temperature"},
-    {"id": "SUZUKI_INTAKE_AIR",                   "path": "Engine",   "fmt": {"bix": 48,  "len": 8,  "max": 215,      "min": -40,                           "add": -40, "unit": "celsius"           }, "name": "Intake air"},
-    {"id": "SUZUKI_BARO",                         "path": "Engine",   "fmt": {"bix": 48,  "len": 8,  "max": 255,                                                        "unit": "kilopascal"        }, "name": "Barometric pressure"},
+    {"id": "SUZUKI_MAP_7E0",                      "path": "Engine",   "fmt": {"bix": 32,  "len": 8,  "max": 255,                                                        "unit": "kilopascal"        }, "name": "Manifold absolute pressure",        "suggestedMetric": "absoluteBoostPressure"},
+    {"id": "SUZUKI_MAP",                          "path": "Engine",   "fmt": {"bix": 40,  "len": 8,  "max": 255,                                                        "unit": "kilopascal"        }, "name": "Manifold absolute pressure",        "suggestedMetric": "absoluteBoostPressure"},
+    {"id": "SUZUKI_IAT",                          "path": "Engine",   "fmt": {"bix": 40,  "len": 8,  "max": 215,      "min": -40,                           "add": -40, "unit": "celsius"           }, "name": "Intake air temperature",            "suggestedMetric": "intakeAirTemperature"},
+    {"id": "SUZUKI_INTAKE_AIR",                   "path": "Engine",   "fmt": {"bix": 48,  "len": 8,  "max": 215,      "min": -40,                           "add": -40, "unit": "celsius"           }, "name": "Intake air",                        "suggestedMetric": "intakeAirTemperature"},
+    {"id": "SUZUKI_BARO",                         "path": "Engine",   "fmt": {"bix": 48,  "len": 8,  "max": 255,                                                        "unit": "kilopascal"        }, "name": "Barometric pressure",               "suggestedMetric": "barometricPressure"},
     {"id": "SUZUKI_AAT",                          "path": "Engine",   "fmt": {"bix": 56,  "len": 8,  "max": 215,      "min": -40,                           "add": -40, "unit": "celsius"           }, "name": "Ambient temperature"},
     {"id": "SUZUKI_ECT_7E0",                      "path": "Engine",   "fmt": {"bix": 56,  "len": 8,  "max": 215,      "min": -40,                           "add": -40, "unit": "celsius"           }, "name": "Engine coolant temperature",        "suggestedMetric": "engineCoolantTemperature"},
     {"id": "SUZUKI_ATMOSPHERE_PRESSURE_V2",       "path": "Engine",   "fmt": {"bix": 56,  "len": 8,  "max": 255,                                                        "unit": "kilopascal"        }, "name": "Atmosphere pressure"},
+    {"id": "SUZUKI_BARO_G3",                      "path": "Engine",   "fmt": {"bix": 56,  "len": 8,  "max": 255,                                                        "unit": "kilopascal"        }, "name": "Barometric pressure",               "suggestedMetric": "barometricPressure"},
     {"id": "SUZUKI_ATMOSPHERE_PRESSURE",          "path": "Engine",   "fmt": {"bix": 64,  "len": 8,  "max": 255,                                                        "unit": "kilopascal"        }, "name": "Atmosphere pressure"},
     {"id": "SUZUKI_RPM",                          "path": "Movement", "fmt": {"bix": 64,  "len": 16, "max": 16383.75,                         "div": 4,                 "unit": "rpm"               }, "name": "Engine speed",                      "suggestedMetric": "engineSpeed"},
     {"id": "SUZUKI_COOLANT_TEMP_7E0",             "path": "Engine",   "fmt": {"bix": 64,  "len": 8,  "max": 215,      "min": -40,                           "add": -40, "unit": "celsius"           }, "name": "Coolant temperature"},
@@ -1984,7 +1986,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "06"}, "freq": 1,
   "signals": [
-    {"id": "SUZUKI_MIL",                            "path": "DTCs", "fmt": {           "len": 1,  "max": 1,                                                       "unit": "offon"      }, "name": "MIL"},
+    {"id": "SUZUKI_MIL",                            "path": "DTCs", "fmt": {           "len": 1,  "max": 1,                                                       "unit": "offon"      }, "name": "MIL",                            "suggestedMetric": "checkEngineLightOn"},
     {"id": "SUZUKI_N210_STFT_B1",                   "path": "Fuel", "fmt": {           "len": 8,  "max": 99.22, "min": -100, "mul": 100, "div": 128, "add": -100, "unit": "percent"    }, "name": "Short term fuel trim, bank 1"},
     {"id": "SUZUKI_NUMBER_OF_EMISSION_DTC",         "path": "DTCs", "fmt": {"bix": 1,  "len": 7,  "max": 127,                                                     "unit": "scalar"     }, "name": "Number of emission DTC"},
     {"id": "SUZUKI_COMPLETE_PARTS_MONITOR_AVAIL",   "path": "DTCs", "fmt": {"bix": 13, "len": 1,  "max": 1,                                                       "unit": "offon"      }, "name": "Complete parts monitor_avail"},
@@ -2023,7 +2025,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "0F"}, "freq": 1,
   "signals": [
-    {"id": "SUZUKI_IAT_21", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Intake air temperature"}
+    {"id": "SUZUKI_IAT_21", "path": "Engine", "fmt": { "len": 8, "max": 215, "min": -40, "add": -40, "unit": "celsius" }, "name": "Intake air temperature", "suggestedMetric": "intakeAirTemperature"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "10"}, "freq": 1,
   "signals": [
@@ -2044,7 +2046,7 @@
     {"id": "SUZUKI_CC_S",                        "path": "Cruise control", "fmt": {"bix": 8,  "len": 8,  "max": 255,                                                       "unit": "kilometersPerHour" }, "name": "Cruise control speed"},
     {"id": "SUZUKI_CC_DRIVING_FORCE",            "path": "Cruise control", "fmt": {"bix": 16, "len": 8,  "max": 50.8,  "min": -51.2, "mul": 102, "div": 255, "add": -51.2, "unit": "scalar"            }, "name": "Requested driving force"},
     {"id": "SUZUKI_CC_ON",                       "path": "Cruise control", "fmt": {"bix": 24, "len": 1,  "max": 1,                                                         "unit": "offon"             }, "name": "Cruise control, on"},
-    {"id": "SUZUKI_CC_CC_ON",                    "path": "Cruise control", "fmt": {"bix": 25, "len": 1,  "max": 1,                                                         "unit": "noyes"             }, "name": "Cruise control, activated?"},
+    {"id": "SUZUKI_CC_CC_ON",                    "path": "Cruise control", "fmt": {"bix": 25, "len": 1,  "max": 1,                                                         "unit": "noyes"             }, "name": "Cruise control, activated?",         "suggestedMetric": "cruiseActive"},
     {"id": "SUZUKI_CC_CCS_INDICATOR_M_CPU_ON",   "path": "Cruise control", "fmt": {"bix": 26, "len": 1,  "max": 1,                                                         "unit": "offon"             }, "name": "Cruise control indicator"},
     {"id": "SUZUKI_CC_CCS_READY_M_CPU_ON",       "path": "Cruise control", "fmt": {"bix": 28, "len": 1,  "max": 1,                                                         "unit": "noyes"             }, "name": "Cruise control ready?"},
     {"id": "SUZUKI_CC_MAIN_SW_M_CPU_ON",         "path": "Cruise control", "fmt": {"bix": 30, "len": 1,  "max": 1,                                                         "unit": "offon"             }, "name": "Cruise control, main switch"},
@@ -2320,7 +2322,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "D3"}, "freq": 0.25,
   "signals": [
-    {"id": "SUZUKI_CRUISE_CTRL_SPD", "path": "Movement", "fmt": {"bix": 8,  "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Cruise control speed"},
+    {"id": "SUZUKI_CRUISE_CTRL_SPD", "path": "Movement", "fmt": {"bix": 8,  "len": 8, "max": 255, "unit": "kilometersPerHour" }, "name": "Cruise control speed", "suggestedMetric": "cruiseSetSpeed"},
     {"id": "SUZUKI_CRUISE_CTRL_ON",  "path": "Engine",   "fmt": {"bix": 25, "len": 1, "max": 1,   "unit": "offon"             }, "name": "Cruise control on"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"21": "D9"}, "freq": 5,
@@ -2383,7 +2385,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0202"}, "freq": 3600,
   "signals": [
-    {"id": "SUZUKI_IA_DTC_CNTD", "path": "DTCs", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Number of DTCs"}
+    {"id": "SUZUKI_IA_DTC_CNTD", "path": "DTCs", "fmt": { "len": 8, "max": 255, "unit": "scalar" }, "name": "Number of DTCs", "suggestedMetric": "storedDTCCount"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "0301"}, "freq": 0.25,
   "signals": [
@@ -2684,7 +2686,7 @@
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40B"}, "freq": 1,
   "signals": [
-    {"id": "SUZUKI_IA_MAP_7E0", "path": "Engine", "fmt": { "len": 8, "max": 36, "mul": 10000, "div": 68947, "unit": "psi" }, "name": "Manifold pressure"}
+    {"id": "SUZUKI_IA_MAP_7E0", "path": "Engine", "fmt": { "len": 8, "max": 36, "mul": 10000, "div": 68947, "unit": "psi" }, "name": "Manifold pressure", "suggestedMetric": "absoluteBoostPressure"}
   ]},
 { "hdr": "7E0", "rax": "7E8", "dbg": true, "cmd": {"22": "F40C"}, "freq": 0.25,
   "signals": [
@@ -3098,10 +3100,10 @@
   ]},
 { "hdr": "7E2", "rax": "7EA", "dbg": true, "cmd": {"21": "D3"}, "freq": 1,
   "signals": [
-    {"id": "SUZUKI_CRUISE_SPD",      "path": "Control",      "fmt": {           "len": 8, "max": 255,                "unit": "kilometersPerHour" }, "name": "Cruise control set speed"},
+    {"id": "SUZUKI_CRUISE_SPD",      "path": "Control",      "fmt": {           "len": 8, "max": 255,                "unit": "kilometersPerHour" }, "name": "Cruise control set speed",            "suggestedMetric": "cruiseSetSpeed"},
     {"id": "SUZUKI_CRUISE_THROTTLE", "path": "Control",      "fmt": {"bix": 8,  "len": 8, "max": 100, "mul": 0.3922, "unit": "percent"           }, "name": "Cruise control throttle opening"},
     {"id": "SUZUKI_SHIFT_D",         "path": "Transmission", "fmt": {"bix": 16, "len": 1, "max": 1,                  "unit": "offon"             }, "name": "Shift in drive"},
-    {"id": "SUZUKI_CRUISE",          "path": "Control",      "fmt": {"bix": 17, "len": 1, "max": 1,                  "unit": "offon"             }, "name": "Cruise control active"},
+    {"id": "SUZUKI_CRUISE",          "path": "Control",      "fmt": {"bix": 17, "len": 1, "max": 1,                  "unit": "offon"             }, "name": "Cruise control active",               "suggestedMetric": "cruiseActive"},
     {"id": "SUZUKI_CRUISE_IND",      "path": "Control",      "fmt": {"bix": 18, "len": 1, "max": 1,                  "unit": "offon"             }, "name": "Cruise control indicator"},
     {"id": "SUZUKI_CRUISE_READY",    "path": "Control",      "fmt": {"bix": 21, "len": 1, "max": 1,                  "unit": "offon"             }, "name": "Cruise control ready"},
     {"id": "SUZUKI_CRUISE_MAIN",     "path": "Control",      "fmt": {"bix": 23, "len": 1, "max": 1,                  "unit": "offon"             }, "name": "Cruise control main switch"},
